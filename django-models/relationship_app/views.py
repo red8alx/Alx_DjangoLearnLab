@@ -16,10 +16,10 @@ def index(request):
 def list_books(request):
     books = Book.objects.all() #fetching all books from the database
     context = {'list_books':books} #creates a context dictionary with list of books
-    return render(request, 'list_books.html', context)
+    return render(request, 'relationship_app/list_books.html', context)
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         #library = self.get_object()
