@@ -17,7 +17,7 @@ def list_books(request):
     books = Book.objects.all() #fetching all books from the database
     context = {'list_books':books} #creates a context dictionary with list of books
     return render(request, 'list_books.html', context)
-class LibraryDetailView(TemplateView):
+class LibraryDetailView(DetailView):
     model = Library
     template_name = 'library_detail.html'
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
