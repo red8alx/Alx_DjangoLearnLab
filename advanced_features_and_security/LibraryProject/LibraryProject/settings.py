@@ -38,11 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf',
-    'relationship_app',
 ]
-#Setting up User Model by specifying the model to use
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
-
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
