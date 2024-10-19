@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)ii1!^m2=wnwev^k=gbz(*ytw$gmi0trzr3!3vjsgrm85-8uaa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf',
+    'csp',
 ]
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
 MIDDLEWARE = [
@@ -126,3 +127,25 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Custom Security Settings Configuration
+SECURE_BROWSER_XSS_FILTER = True #enable the browser’s XSS filtering and help prevent cross-site scripting attacks.
+
+X_FRAME_OPTIONS = 'DENY' #Prevents your site from being framed & protect against clickjacking attacks 
+
+SECURE_CONTENT_TYPE_NOSNIFF = True #prevent browsers from MIME-sniffing a response away from the declared content-type.
+
+CSRF_COOKIE_SECURE = True #ensure CSRF cookies are only transmitted over HTTPS.
+
+SESSION_COOKIE_SECURE = True #ensure session cookies are only transmitted over HTTPS
+
+SECURE_SSL_REDIRECT = True #Redirects all non-HTTPS requests to HTTPS
+
+SECURE_HSTS_SECONDS = 31536000 #Sets HSTS to 1 year (31536000 seconds)
+#Instructs browsers to only  access the site via HTTPS for the specified time
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True #Includes all subdomains in HSTS policy
+
+SECURE_HSTS_PRELOAD = True #Preloads the HSTS policy in the browser
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') #Enables secure proxy support for HTTPS requests
