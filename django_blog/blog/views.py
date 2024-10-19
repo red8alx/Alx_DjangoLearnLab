@@ -1,6 +1,4 @@
-from django.shortcuts import render
 
-# Create your views here.
 from django.shortcuts import render, redirect
 from . import views
 from django.urls import reverse_lazy
@@ -181,7 +179,7 @@ def search_posts_view(request):
 
     return render(request, 'search_results.html', {'results': results, 'query': query})
 
-#from taggit.models import Tag
+from taggit.models import Tag
 
 class PostByTagListView(ListView):
     model = Post
@@ -190,10 +188,10 @@ class PostByTagListView(ListView):
     
     def get_queryset(self):
         tag_slug = self.kwargs.get('tag_slug')
-        #tag = Tag.objects.get(slug=tag_slug)
-        #return Post.objects.filter(tags__in=[tag])
+        tag = Tag.objects.get(slug=tag_slug)
+        return Post.objects.filter(tags__in=[tag])
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        #context['tag'] = Tag.objects.get(slug=self.kwargs.get('tag_slug'))
+        context['tag'] = Tag.objects.get(slug=self.kwargs.get('tag_slug'))
         return context
