@@ -1,4 +1,3 @@
-
 #Creating Custom Serializers
 
 from rest_framework import serializers
